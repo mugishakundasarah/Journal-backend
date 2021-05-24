@@ -1,6 +1,10 @@
 const mongoose = require("mongoose")
 
 const EventSchema = new mongoose.Schema({
+    clientID: {
+        type: mongoose.Types.ObjectId(),
+        ref: Client
+    },
     EventName: String,
     EventTime: Date 
 })

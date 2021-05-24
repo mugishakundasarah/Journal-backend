@@ -1,10 +1,17 @@
 const mongoose = require("mongoose")
 
 const GoalSchema = new mongoose.Schema({
+    clientID: {
+        type: mongoose.Types.ObjectId(),
+        ref: Client
+    },
     GoalName: String,
-    GoalDescription: String,
     DateOfAction: Date,
-    reminderTime: Date
+    reminderTime: Date,
+    GoalCategory: {
+        type: String,
+        enum: ['personal', 'work/business', 'religious']
+    }
 })
 
 const Goal = mongoose.model("Goal", GoalSchema);
