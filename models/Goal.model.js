@@ -10,7 +10,10 @@ const GoalSchema = new mongoose.Schema({
     reminderTime: Date,
     GoalCategory: {
         type: String,
-        enum: ['personal', 'work/business', 'religious']
+        enum: {
+            values: ['Business/work', 'Personal', 'family', 'religious'],
+            message: '{VALUE} is not supported'
+          }      
     }
 })
 
