@@ -1,0 +1,1214 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.5",
+        "title": "Jounaling app documentation"
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "User",
+            "description": "Everything about user"
+        },
+        {
+            "name": "diary",
+            "description": "Everything about diary "
+        },
+        {
+            "name": "goal",
+            "description": "Everything about goals"
+        },
+        {
+            "name": "task",
+            "description": "Everything about tasks"
+        },
+        {
+            "name": "note",
+            "description": "Everything about notes"
+        },
+        {
+            "name": "mood",
+            "description": "Everything about moods"
+        },
+        {
+            "name": "event",
+            "description": "Everything about events"
+        }
+
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Save new user",
+                "description": "Save new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "body",
+                    "name": "body",
+                    "description": "User object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }
+            ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "update existing user",
+                "description": "update existing user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "User object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/User"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "security":[
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Finds all Users",
+                "description": "All Users available in the system",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No record found"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Find User by ID",
+                "description": "Returns a single user",
+                "operationId": "getUserById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of user to return",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "User account Deletion",
+                "description": "Returns a deleted user",
+                "operationId": "deleteUserById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of user to delete",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+
+        
+"/api/diaries": {
+    "post": {
+        "tags": [
+            "diary"
+        ],
+        "summary": "Save new diary",
+        "description": "Save new diary",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+            {
+            "in": "body",
+            "name": "body",
+            "description": "diary object that needs to be added to the database",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/diary"
+            }
+        }
+    ],
+        "responses": {
+            "201": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/ApiResponse"
+                }
+            }
+        }
+    },
+    "put": {
+        "tags": [
+            "diary"
+        ],
+        "summary": "update existing diary",
+        "description": "update existing diary",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "diary object that needs to be added to the database",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/diary"
+            }
+        }],
+        "responses": {
+            "201": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/ApiResponse"
+                }
+            }
+        }
+    },
+    "get": {
+        "tags": [
+            "diary"
+        ],
+        "security":[
+            {
+                "Bearer": []
+            }
+        ],
+        "summary": "Finds all diarys",
+        "description": "All diaries available in the system",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/diary"
+                    }
+                }
+            },
+            "404": {
+                "description": "No record found"
+            }
+        }
+    }
+},
+"/api/diarys/{id}": {
+    "get": {
+        "tags": [
+            "diary"
+        ],
+        "summary": "Find diary by ID",
+        "description": "Returns a single diary",
+        "operationId": "getdiaryById",
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "ID of diary to return",
+            "required": true,
+            "type": "string"
+        }],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/diary"
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "diary not found"
+            }
+        }
+    }
+},
+
+        "/api/notes": {
+            "post": {
+                "tags": [
+                    "note"
+                ],
+                "summary": "Save new note",
+                "description": "Save new note",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "body",
+                    "name": "body",
+                    "description": "note object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/note"
+                    }
+                }
+            ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "note"
+                ],
+                "summary": "update existing note",
+                "description": "update existing note",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "note object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/note"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "note"
+                ],
+                "security":[
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Finds all notes",
+                "description": "All notes available in the system",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/note"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No record found"
+                    }
+                }
+            }
+        },
+        "/api/notes/{id}": {
+            "get": {
+                "tags": [
+                    "note"
+                ],
+                "summary": "Find note by ID",
+                "description": "Returns a single note",
+                "operationId": "getnoteById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of note to return",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/note"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "note not found"
+                    }
+                }
+            },
+            
+            "delete": {
+                "tags": [
+                    "note"
+                ],
+                "summary": "note Deletion",
+                "description": "Returns a deleted note",
+                "operationId": "deletenoteById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of note to delete",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/note"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "note not found"
+                    }
+                }
+            }
+        },
+
+       
+"/api/events": {
+    "post": {
+        "tags": [
+            "event"
+        ],
+        "summary": "Save new event",
+        "description": "Save new event",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+            {
+            "in": "body",
+            "name": "body",
+            "description": "event object that needs to be added to the database",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/event"
+            }
+        }
+    ],
+        "responses": {
+            "201": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/ApiResponse"
+                }
+            }
+        }
+    },
+    "put": {
+        "tags": [
+            "event"
+        ],
+        "summary": "update existing event",
+        "description": "update existing event",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "event object that needs to be added to the database",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/event"
+            }
+        }],
+        "responses": {
+            "201": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/ApiResponse"
+                }
+            }
+        }
+    },
+    "get": {
+        "tags": [
+            "event"
+        ],
+        "security":[
+            {
+                "Bearer": []
+            }
+        ],
+        "summary": "Finds all events",
+        "description": "All events available in the system",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/goal"
+                    }
+                }
+            },
+            "404": {
+                "description": "No record found"
+            }
+        }
+    }
+},
+"/api/events/{id}": {
+    "delete": {
+        "tags": [
+            "event"
+        ],
+        "summary": "event Deletion",
+        "description": "Returns a deleted event",
+        "operationId": "deletegoalById",
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "ID of event to delete",
+            "required": true,
+            "type": "string"
+        }],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/event"
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "event not found"
+            }
+        }
+    }
+},
+
+
+"/api/binItems": {
+    "get": {
+        "tags": [
+            "binItem"
+        ],
+        "security":[
+            {
+                "Bearer": []
+            }
+        ],
+        "summary": "Finds all binItems",
+        "description": "All binItems available in the system",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/goal"
+                    }
+                }
+            },
+            "404": {
+                "description": "No record found"
+            }
+        }
+    }
+},
+"/api/binItems/{id}": {
+    "delete": {
+        "tags": [
+            "binItem"
+        ],
+        "summary": "binItem Deletion",
+        "description": "Returns a deleted binItem",
+        "operationId": "deletegoalById",
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "ID of binItem to delete",
+            "required": true,
+            "type": "string"
+        }],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/binItem"
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "binItem not found"
+            }
+        }
+    }
+},
+
+
+        "/api/tasks": {
+            "post": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "Save new task",
+                "description": "Save new task",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "body",
+                    "name": "body",
+                    "description": "task object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/task"
+                    }
+                }
+            ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "task"
+                ],
+                "summary": "update existing task",
+                "description": "update existing task",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "task object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/task"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "task"
+                ],
+                "security":[
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Finds all tasks",
+                "description": "All tasks available in the system",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/goal"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No record found"
+                    }
+                }
+            }
+        },
+
+        "/api/goals": {
+            "post": {
+                "tags": [
+                    "goal"
+                ],
+                "summary": "Save new goal",
+                "description": "Save new goal",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "body",
+                    "name": "body",
+                    "description": "goal object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/goal"
+                    }
+                }
+            ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "goal"
+                ],
+                "summary": "update existing goal",
+                "description": "update existing goal",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "goal object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/goal"
+                    }
+                }],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "goal"
+                ],
+                "security":[
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Finds all goals",
+                "description": "All goals available in the system",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/goal"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No record found"
+                    }
+                }
+            }
+        },
+        "/api/goals/{id}": {
+            "delete": {
+                "tags": [
+                    "goal"
+                ],
+                "summary": "goal Deletion",
+                "description": "Returns a deleted goal",
+                "operationId": "deletegoalById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of goal to delete",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/goal"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "goal not found"
+                    }
+                }
+            }
+        },
+
+        "/api/moods": {
+            "post": {
+                "tags": [
+                    "mood"
+                ],
+                "summary": "Save new mood",
+                "description": "Save new mood",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                    "in": "body",
+                    "name": "body",
+                    "description": "mood object that needs to be added to the database",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/mood"
+                    }
+                }
+            ],
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "mood"
+                ],
+                "security":[
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "summary": "Finds all moods",
+                "description": "All moods available in the system",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/mood"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No record found"
+                    }
+                }
+            }
+        },
+        "/api/moods/{id}": {
+            "get": {
+                "tags": [
+                    "mood"
+                ],
+                "summary": "Find mood by ID",
+                "description": "Returns a single mood",
+                "operationId": "getmoodById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of mood to return",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/mood"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "mood not found"
+                    }
+                }
+            }
+        }
+    },
+        "definitions": {
+            "ApiResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Token": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            
+        "note": {
+            "type": "object",
+            "required": [
+                "noteTitle",
+                "Note writter",
+                "content"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "noteTitle": {
+                    "type": "string",
+                    "example": "todays' schedule"
+                },
+                "note writter": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "required": [
+                "username",
+                "Email",
+                "password",
+                "hobby"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "Email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "hobby": {
+                    "type": "string"
+                }
+            }
+        },
+        "mood": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "DateOfRecording",
+                "moodDescription"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "ClientID": {
+                    "type": "string"
+                },
+                "DateOfRecording": {
+                    "type": "date"
+                },
+                "moodDescription": {
+                    "type": "string"
+                }
+            }
+        },
+        "goal": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "goalName",
+                "DateOfAction",
+                "GoalCategory"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "ClientID": {
+                    "type": "string"
+                },
+                "goalName": {
+                    "type": "string"
+                },
+                "DateOfAction": {
+                    "type": "date"
+                },
+                "reminderTime": {
+                    "type": "date"
+                },
+                "GoalCategory": {
+                    "type": "string"
+                }
+            }
+        },
+        "task": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "taskName",
+                "DateOfAction"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "ClientID": {
+                    "type": "string"
+                },
+                "taskName": {
+                    "type": "string"
+                },
+                "DateOfAction": {
+                    "type": "date"
+                },
+                "reminderTime": {
+                    "type": "date"
+                },
+                "taskDescription": {
+                    "type": "string"
+                }
+            }
+        },
+        "diary": {
+            "type": "object",
+            "required": [
+                "DiaryWriter",
+                "DateOfWritting",
+                "Diary title",
+                "Diary content"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "DiaryWriter": {
+                    "type": "string"
+                },
+                "DateOfWritting": {
+                    "type": "date"
+                },
+                "Diary title": {
+                    "type": "string"
+                },
+                "Diary content": {
+                    "type": "string"
+            }
+        },
+        "event": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "EventName",
+                "EventTime"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "ClientID": {
+                    "type": "string"
+                },
+                "EventName": {
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "type": "object",
+            "properties": {
+                "Email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    }   
+ }
+}
