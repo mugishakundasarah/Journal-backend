@@ -8,31 +8,31 @@
     "basePath": "/",
     "tags": [
         {
-            "name": "users",
+            "name": "User",
             "description": "Everything about user"
         },
         {
-            "name": "Diaries",
+            "name": "diary",
             "description": "Everything about diary "
         },
         {
-            "name": "Goals",
+            "name": "goal",
             "description": "Everything about goals"
         },
         {
-            "name": "tasks",
+            "name": "task",
             "description": "Everything about tasks"
         },
         {
-            "name": "Notes",
+            "name": "note",
             "description": "Everything about notes"
         },
         {
-            "name": "moods",
+            "name": "mood",
             "description": "Everything about moods"
         },
         {
-            "name": "events",
+            "name": "event",
             "description": "Everything about events"
         }
 
@@ -42,7 +42,7 @@
     ],
     "paths": {
         "/api/users": {
-            "mood": {
+            "post": {
                 "tags": [
                     "User"
                 ],
@@ -139,7 +139,7 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Find note by ID",
+                "summary": "Find User by ID",
                 "description": "Returns a single user",
                 "operationId": "getUserById",
                 "produces": [
@@ -200,8 +200,138 @@
                 }
             }
         },
+
+        
+"/api/diaries": {
+    "post": {
+        "tags": [
+            "diary"
+        ],
+        "summary": "Save new diary",
+        "description": "Save new diary",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [
+            {
+            "in": "body",
+            "name": "body",
+            "description": "diary object that needs to be added to the database",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/diary"
+            }
+        }
+    ],
+        "responses": {
+            "201": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/ApiResponse"
+                }
+            }
+        }
+    },
+    "put": {
+        "tags": [
+            "diary"
+        ],
+        "summary": "update existing diary",
+        "description": "update existing diary",
+        "consumes": [
+            "application/json"
+        ],
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "in": "body",
+            "name": "body",
+            "description": "diary object that needs to be added to the database",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/diary"
+            }
+        }],
+        "responses": {
+            "201": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/ApiResponse"
+                }
+            }
+        }
+    },
+    "get": {
+        "tags": [
+            "diary"
+        ],
+        "security":[
+            {
+                "Bearer": []
+            }
+        ],
+        "summary": "Finds all diarys",
+        "description": "All diaries available in the system",
+        "produces": [
+            "application/json"
+        ],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/diary"
+                    }
+                }
+            },
+            "404": {
+                "description": "No record found"
+            }
+        }
+    }
+},
+"/api/diarys/{id}": {
+    "get": {
+        "tags": [
+            "diary"
+        ],
+        "summary": "Find diary by ID",
+        "description": "Returns a single diary",
+        "operationId": "getdiaryById",
+        "produces": [
+            "application/json"
+        ],
+        "parameters": [{
+            "name": "id",
+            "in": "path",
+            "description": "ID of diary to return",
+            "required": true,
+            "type": "string"
+        }],
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "schema": {
+                    "$ref": "#/definitions/diary"
+                }
+            },
+            "400": {
+                "description": "Invalid ID supplied"
+            },
+            "404": {
+                "description": "diary not found"
+            }
+        }
+    }
+},
+
         "/api/notes": {
-            "note": {
+            "post": {
                 "tags": [
                     "note"
                 ],
@@ -363,7 +493,7 @@
 
        
 "/api/events": {
-    "event": {
+    "post": {
         "tags": [
             "event"
         ],
@@ -492,68 +622,6 @@
 
 
 "/api/binItems": {
-    "binItem": {
-        "tags": [
-            "binItem"
-        ],
-        "summary": "Save new binItem",
-        "description": "Save new binItem",
-        "consumes": [
-            "application/json"
-        ],
-        "produces": [
-            "application/json"
-        ],
-        "parameters": [
-            {
-            "in": "body",
-            "name": "body",
-            "description": "binItem object that needs to be added to the database",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/binItem"
-            }
-        }
-    ],
-        "responses": {
-            "201": {
-                "description": "successful operation",
-                "schema": {
-                    "$ref": "#/definitions/ApiResponse"
-                }
-            }
-        }
-    },
-    "put": {
-        "tags": [
-            "binItem"
-        ],
-        "summary": "update existing binItem",
-        "description": "update existing binItem",
-        "consumes": [
-            "application/json"
-        ],
-        "produces": [
-            "application/json"
-        ],
-        "parameters": [{
-            "in": "body",
-            "name": "body",
-            "description": "binItem object that needs to be added to the database",
-            "required": true,
-            "schema": {
-                "$ref": "#/definitions/binItem"
-            }
-        }],
-        "responses": {
-            "201": {
-                "description": "successful operation",
-                "schema": {
-                    "$ref": "#/definitions/ApiResponse"
-                }
-            }
-        }
-    },
     "get": {
         "tags": [
             "binItem"
@@ -621,7 +689,7 @@
 
 
         "/api/tasks": {
-            "task": {
+            "post": {
                 "tags": [
                     "task"
                 ],
@@ -713,44 +781,9 @@
                 }
             }
         },
-        "/api/tasks/{id}": {
-            "delete": {
-                "tags": [
-                    "task"
-                ],
-                "summary": "task Deletion",
-                "description": "Returns a deleted task",
-                "operationId": "deletegoalById",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                    "name": "id",
-                    "in": "path",
-                    "description": "ID of task to delete",
-                    "required": true,
-                    "type": "string"
-                }],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/task"
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    },
-                    "404": {
-                        "description": "task not found"
-                    }
-                }
-            }
-        },
-
 
         "/api/goals": {
-            "goals": {
+            "post": {
                 "tags": [
                     "goal"
                 ],
@@ -878,7 +911,7 @@
         },
 
         "/api/moods": {
-            "mood": {
+            "post": {
                 "tags": [
                     "mood"
                 ],
@@ -992,78 +1025,43 @@
                     }
                 }
             },
+            
         "note": {
             "type": "object",
             "required": [
-                "noteName",
-                "noteTag",
-                "writtenBy",
-                "stringOfPublishing"
+                "noteTitle",
+                "Note writter",
+                "content"
             ],
             "properties": {
                 "_id": {
                     "type": "string"
                 },
-                "noteName": {
+                "noteTitle": {
                     "type": "string",
-                    "example": "Rich Dad Poor Dad"
+                    "example": "todays' schedule"
                 },
-                "noteTag": {
-                    "type": "string",
-                    "example": "rich dad"
+                "note writter": {
+                    "type": "string"
                 },
-                "noteRating": {
-                    "type": "string",
-                    "example": "5 starts"
-                },
-                "currentReaders":{
-                    "type": "object",
-                    "example": "['Jane Doe','John Doe']"
-                },
-                "AlreadyRead":{
-                    "type": "object",
-                    "example": "['Peter Doe','Lorem Dan']"
-
-                },
-                "writtenBy": {
-                    "type": "string",
-                    "example": "James Black"
-                },
-                "noteStatus": {
-                    "type": "string",
-                    "example": "Paid"
-                },
-                "stringOfPublishing": {
-                    "type": "string",
-                    "example": "10/2/2022"
-                },
-                "Recentlyupdatedstring":{
-                    "type": "string",
-                    "example": "10/2/2022"
-                },
-                "noteChapters": {
-                    "type": "object",
-                    "example": "['chapter 1','chapter 2']"
-                },
-                "noteCover":{
-                    "type": "string",
-                    "example": "image.jpg"
+                "content": {
+                    "type": "string"
                 }
             }
         },
         "User": {
             "type": "object",
             "required": [
-                "userName",
+                "username",
                 "Email",
                 "password",
-                "DOB"
+                "hobby"
             ],
             "properties": {
                 "_id": {
                     "type": "string"
                 },
-                "userName": {
+                "username": {
                     "type": "string"
                 },
                 "Email": {
@@ -1072,22 +1070,7 @@
                 "password": {
                     "type": "string"
                 },
-                "DOB": {
-                    "type": "string"
-                },
-                "followers": {
-                    "type": "object"
-                },
-                "rating": {
-                    "type": "string"
-                },
-                "notesWritten": {
-                    "type": "object"
-                },
-                "preferences": {
-                    "type": "string"
-                },
-                "Profilepicture": {
+                "hobby": {
                     "type": "string"
                 }
             }
@@ -1095,49 +1078,122 @@
         "mood": {
             "type": "object",
             "required": [
-                "moodContent",
-                "moodedBy"
+                "ClientID",
+                "DateOfRecording",
+                "moodDescription"
             ],
             "properties": {
                 "_id": {
                     "type": "string"
                 },
-                "moodContent": {
+                "ClientID": {
                     "type": "string"
                 },
-                "moodImage": {
-                    "type": "string"
+                "DateOfRecording": {
+                    "type": "date"
                 },
-                "moodedBy": {
+                "moodDescription": {
                     "type": "string"
-                },
-                "comments": {
-                    "type": "object"
                 }
             }
         },
         "goal": {
             "type": "object",
             "required": [
+                "ClientID",
                 "goalName",
-                "goalDescription",
-                "heldBy",
-                "goalStatus"
+                "DateOfAction",
+                "GoalCategory"
             ],
             "properties": {
                 "_id": {
                     "type": "string"
                 },
+                "ClientID": {
+                    "type": "string"
+                },
                 "goalName": {
                     "type": "string"
                 },
-                "goalDescription": {
+                "DateOfAction": {
+                    "type": "date"
+                },
+                "reminderTime": {
+                    "type": "date"
+                },
+                "GoalCategory": {
+                    "type": "string"
+                }
+            }
+        },
+        "task": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "taskName",
+                "DateOfAction"
+            ],
+            "properties": {
+                "_id": {
                     "type": "string"
                 },
-                "heldBy": {
+                "ClientID": {
                     "type": "string"
                 },
-                "goalStatus": {
+                "taskName": {
+                    "type": "string"
+                },
+                "DateOfAction": {
+                    "type": "date"
+                },
+                "reminderTime": {
+                    "type": "date"
+                },
+                "taskDescription": {
+                    "type": "string"
+                }
+            }
+        },
+        "diary": {
+            "type": "object",
+            "required": [
+                "DiaryWriter",
+                "DateOfWritting",
+                "Diary title",
+                "Diary content"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "DiaryWriter": {
+                    "type": "string"
+                },
+                "DateOfWritting": {
+                    "type": "date"
+                },
+                "Diary title": {
+                    "type": "string"
+                },
+                "Diary content": {
+                    "type": "string"
+            }
+        },
+        "event": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "EventName",
+                "EventTime"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "ClientID": {
+                    "type": "string"
+                },
+                "EventName": {
                     "type": "string"
                 }
             }
@@ -1154,4 +1210,5 @@
             }
         }
     }   
+ }
 }
