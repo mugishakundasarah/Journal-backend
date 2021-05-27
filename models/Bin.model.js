@@ -12,4 +12,4 @@ const BinSchema = new mongoose.Schema({
 
 const Bin = mongoose.model("Bin", BinSchema);
 
-module.exports.Bin = Bin 
+module.exports.Bin = Bin

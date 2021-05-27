@@ -11,5 +11,4 @@ const connect = async() => {
         debug(error)
     }
 }
-
 connect();
