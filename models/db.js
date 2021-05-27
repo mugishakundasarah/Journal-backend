@@ -1,10 +1,12 @@
 const mongoose = require("mongoose")
 const debug = require("debug")("app:database")
+const config = require("config")
 
 const connect = async() => {
     try {
-        await mongoose.connect("mongodb+srv://sarah:28!01!2020@cluster0.jldhx.mongodb.net/journal?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});    
-        debug("successfully connected");
+        const mongoUrl = config.get("app.mongoUrl")
+        await mongoose.connect(mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true});    
+        debug("successfully connected", mongoUrl);
     } catch (error) {
         debug(error)
     }

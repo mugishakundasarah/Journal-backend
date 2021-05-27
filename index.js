@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 5400;
+const config = require("config")
+const port = config.get("app.port");
+const appDebug = require("debug")("app:Debug")
 
 require("./models/db");
 
-app.listen(port)
+app.listen(port, () => appDebug(`app started listen on port ..... ${port}`))
