@@ -34,6 +34,9 @@
         {
             "name": "event",
             "description": "Everything about events"
+        },  {
+            "name": "binItem",
+            "description": "Deleted items"
         }
 
     ],
@@ -642,7 +645,7 @@
                 "schema": {
                     "type": "object",
                     "items": {
-                        "$ref": "#/definitions/goal"
+                        "$ref": "#/definitions/binItem"
                     }
                 }
             },
@@ -1126,6 +1129,24 @@
                 }
             }
         },
+        "binItem": {
+            "type": "object",
+            "required": [
+                "ClientID",
+                "ItemRef"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "ClientID": {
+                    "type": "string"
+                },
+                "ItemRef": {
+                    "type": "string"
+                }
+            }
+        },
         "task": {
             "type": "object",
             "required": [
@@ -1198,6 +1219,7 @@
                 }
             }
         },
+        
         "Login": {
             "type": "object",
             "properties": {
