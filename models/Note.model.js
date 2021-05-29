@@ -4,7 +4,7 @@ const joi = require("joi");
 const NoteSchema = new mongoose.Schema({
     noteTitle: String,
     noteWriter: {
-        type: mongoose.types.objectId(),
+        type: mongoose.Schema.Types.ObjectId,
         ref: Client
     },
     DateOfAction: Date,

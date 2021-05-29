@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const MoodSchema = new mongoose.Schema({
     clientID: {
-        type: mongoose.Types.ObjectId(),
+        type: mongoose.Schema.Types.ObjectId,
         ref: Client
     },
     DateOfRecording: Date,
