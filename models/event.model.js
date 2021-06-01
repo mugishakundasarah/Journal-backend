@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Client = require("./client.model")
+const Client = require("./client.model").Client;
 const EventSchema = new mongoose.Schema({
     clientID: {
         type: mongoose.Types.ObjectId,
@@ -11,4 +11,4 @@ const EventSchema = new mongoose.Schema({
 
 const Event = mongoose.model("Event", EventSchema);
 
-module.exports = Event 
+module.exports.Event = Event 

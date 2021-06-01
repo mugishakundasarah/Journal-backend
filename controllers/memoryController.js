@@ -1,4 +1,4 @@
-const Memory = require("./../models/memory.model");
+const Memory = require("./../models/memory.model").Memory;
 const mongoose = require("mongoose");
 exports.createMemory = async (req,res)=>{
     try{

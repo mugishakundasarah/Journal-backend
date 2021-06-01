@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const Client = require("./client.model")
+const Client = require("./client.model").Client
 
 const MoodSchema = new mongoose.Schema({
     clientID: {
@@ -12,4 +12,4 @@ const MoodSchema = new mongoose.Schema({
 
 const Mood = mongoose.model("Mood", MoodSchema);
 
-module.exports = Mood 
+module.exports.Mood = Mood 

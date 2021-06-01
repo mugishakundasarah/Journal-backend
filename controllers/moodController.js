@@ -1,4 +1,4 @@
-const Mood = require("./../models/Mood.model");
+const Mood = require("./../models/Mood.model").Mood;
 const mongoose = require("mongoose")
 exports.createMood = async (req,res)=>{
     console.log(req.body)
