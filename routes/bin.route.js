@@ -1,11 +1,11 @@
-var Router       = require('router')
+var Router = require('router')
 const { createbinItem, gettingbinItems, deletebinItem } = require('../controllers/Bin.controller');
-const router=Router()
+const router = Router()
 
 router.route('/')
-.post(createbinItem)
-.get(gettingbinItems)
+    .post(createbinItem)
+    .get(gettingbinItems)
 router.route('/:id')
-.delete(deletebinItem)
+    .delete(deletebinItem)
 
-module.exports.binItemsRoutes=router
+module.exports.binItemsRoutes = router
