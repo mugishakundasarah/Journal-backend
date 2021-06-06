@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 const debug = require("debug")("app:database")
 const config = require("config")
-
 const connect = async() => {
     try {
         const mongoUrl = config.get("app.mongoUrl")

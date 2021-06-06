@@ -1,8 +1,9 @@
 const mongoose = require("mongoose")
+const Client = require("./client.model").Client
 
 const MoodSchema = new mongoose.Schema({
     clientID: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: Client
     },
     DateOfRecording: Date,
