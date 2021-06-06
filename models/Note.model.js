@@ -1,9 +1,10 @@
 const mongoose = require("mongoose")
+const joi = require("joi");
 
 const NoteSchema = new mongoose.Schema({
     noteTitle: String,
     noteWriter: {
-        type: mongoose.types.objectId(),
+        type: mongoose.Schema.Types.ObjectId,
         ref: Client
     },
     DateOfAction: Date,
@@ -12,4 +13,12 @@ const NoteSchema = new mongoose.Schema({
 
 const Note = mongoose.model("Note", NoteSchema);
 
-module.exports.Note = Note 
+module.exports.Note = Note
+module.exports.validateNote = (note)=>{
+    const validNote = joi.object({
+        noteTitle:joi.string(),
+        DateOfAction:joi.date(),
+        reminderTime:joi.date()
+    })
+    return validNote(note);
+}

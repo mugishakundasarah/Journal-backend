@@ -1,25 +1,13 @@
 const mongoose = require("mongoose")
 const debug = require("debug")("app:database")
-
-// const connect = async() => {
-//     try {
-//         await mongoose.connect("mongodb://localhost/journal", {useNewUrlParser: true, useUnifiedTopology: true});    
-//         debug("successfully connected");
-//     } catch (error) {
-//         debug(error)
-//     }
-// }
-async function connect(){
-    mongoose.connect("mongodb://localhost/journal",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true 
-    })
-    .then(()=>{
-        console.log("connected")
-    }).catch(err=>{
-        console.log(err);
-    })
+const config = require("config")
+const connect = async() => {
+    try {
+        const mongoUrl = config.get("app.mongoUrl")
+        await mongoose.connect(mongoUrl, {useNewUrlParser: true, useUnifiedTopology: true});    
+        debug("successfully connected", mongoUrl);
+    } catch (error) {
+        debug(`FAILED TO CONNECT MONGODB.....`+ error)
+    }
 }
-
 connect();
