@@ -3,10 +3,10 @@ const express = require("express")
 const diaryRoutes = express.Router()
 
 diaryRoutes.route('/')
-.post(createDiary)
-.get(getDiaries)
+    .post(createDiary)
+    .get(getDiaries)
 
 diaryRoutes.route('/:id')
-.delete(deleteDiary)
+    .delete(deleteDiary)
 
 module.exports.diaryRoutes = diaryRoutes

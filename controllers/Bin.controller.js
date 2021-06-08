@@ -1,6 +1,6 @@
 const { binItem } = require("../models/Bin.model")
 const { formatResult } = require("../utils/import")
-exports.gettingbinItems = async (req, res) => {
+exports.gettingbinItems = async(req, res) => {
     try {
         let {
             page,
@@ -32,9 +32,9 @@ exports.gettingbinItems = async (req, res) => {
     }
 }
 
-exports.createbinItem = async (req, res) => {
-    try {  
-        const newbinItem=new binItem(req.body)
+exports.createbinItem = async(req, res) => {
+    try {
+        const newbinItem = new binItem(req.body)
         await newbinItem.save()
         return res.send(
             formatResult({
@@ -51,16 +51,15 @@ exports.createbinItem = async (req, res) => {
         }))
     }
 }
-exports.deletebinItem = async (req, res) => {
+exports.deletebinItem = async(req, res) => {
     try {
         if (!isValidObjectId(req.params.id))
             return res.send(formatResult({ status: 400, message: "Invalid id" }))
-      const binItem = await binItem.findOneAndDelete({
+        const binItem = await binItem.findOneAndDelete({
             _id: req.params.id
         })
-        return res.send(formatResult({ status: 200, message: 'Item deleted Permanently', data:binItem}))
-    } catch
-    (e) {
+        return res.send(formatResult({ status: 200, message: 'Item deleted Permanently', data: binItem }))
+    } catch (e) {
         return res.send(formatResult({ status: 500, message: e }))
     }
 }
