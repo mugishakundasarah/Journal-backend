@@ -6,7 +6,7 @@ const moodRouter = require("./moodRouter");
 const memoryRouter = require("./memoryRouter");
 const eventRouter = require("./eventRouter")
 app.use(bodyparser.urlencoded({
-    extended:true
+    extended: true
 }))
 app.use(bodyparser.json());
 const config = require("config")
@@ -17,15 +17,17 @@ const swaggerUi = require("swagger-ui-express")
 const swaggerDocument = require('./swagger.json');
 const { binItemsRoutes } = require("./routes/bin.route");
 const { formatResult } = require("./utils/import");
-const {formatResult} = require("./utils/import")
-const {diaryRoutes} = require("./routes")
+const { formatResult } = require("./utils/import")
+const { diaryRoutes } = require("./routes")
 require('./models/db')
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/diary", diaryRoutes)
-app.use('/binItems',binItemsRoutes)
-app.use('/moods',moodRouter);
-app.use('/memories',memoryRouter);
-app.use('/events',eventRouter);
+app.use('/binItems', binItemsRoutes)
+
+app.use('/binItems', binItemsRoutes)
+app.use('/moods', moodRouter);
+app.use('/memories', memoryRouter);
+app.use('/events', eventRouter);
 app.use("/", (req, res) => {
     res.send(formatResult({
         status: 200,

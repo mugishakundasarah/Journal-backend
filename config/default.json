@@ -1,6 +1,6 @@
 {
-    "app" :{
-        "mongoUrl" : "mongodb+srv://sarah:28!01!2020@cluster0.jldhx.mongodb.net/journal?retryWrites=true&w=majority",
-        "port" : 5000
+    "app": {
+        "mongoUrl": "mongodb+srv://sarah:28!01!2020@cluster0.jldhx.mongodb.net/journal?retryWrites=true&w=majority",
+        "port": 5000
     }
 }
