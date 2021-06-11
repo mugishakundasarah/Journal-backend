@@ -1,9 +1,7 @@
 const { isValidObjectId } = require("mongoose");
-const { Goal, validate_Goal, Goals } = require("../model/Goals/Goals.model");
+const { Goal, validate_Goal, Goals } = require("../model/Goal.model");
 const { formatResult } = require("../utils/imports");
 const mongoose = require("mongoose");
-// const e = require("cors");
-
 
 /**
  * Get Goal
