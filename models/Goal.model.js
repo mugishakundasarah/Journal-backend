@@ -1,3 +1,5 @@
+const paginate = require('mongoose-paginate-v2');
+const Joi = require("joi");
 const mongoose = require("mongoose")
 const GoalSchema = new mongoose.Schema({
     clientID: {
@@ -15,14 +17,15 @@ const GoalSchema = new mongoose.Schema({
         }
     }
 })
+GoalSchema.plugin(paginate)
 const Goal = mongoose.model("Goal", GoalSchema);
 
 exports.validate_Goal = (goal) => {
     const goal_validation = Joi.object().keys({
-        DiaryTitle: Joi.string().required(),
+        clientID: Joi.string().required(),
         GoalName: Joi.string().required(),
-        DateOfAction: Joi.Date().required(),
-        reminderTime: Joi.Date().required(),
+        DateOfAction: Joi.date().required(),
+        reminderTime: Joi.date().required(),
         GoalCategory: Joi.string().required()
     })
     return goal_validation.validate(goal)
