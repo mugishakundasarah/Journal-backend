@@ -12,10 +12,19 @@ const GoalSchema = new mongoose.Schema({
         enum: {
             values: ['Business/work', 'Personal', 'family', 'religious'],
             message: '{VALUE} is not supported'
-          }      
+        }
     }
 })
-
 const Goal = mongoose.model("Goal", GoalSchema);
 
-module.exports.Goal = Goal 
+exports.validate_Goal = (goal) => {
+    const goal_validation = Joi.object().keys({
+        DiaryTitle: Joi.string().required(),
+        GoalName: Joi.string().required(),
+        DateOfAction: Joi.Date().required(),
+        reminderTime: Joi.Date().required(),
+        GoalCategory: Joi.string().required()
+    })
+    return goal_validation.validate(goal)
+}
+module.exports.Goal = Goal
