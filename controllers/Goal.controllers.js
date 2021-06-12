@@ -1,7 +1,6 @@
 const { isValidObjectId } = require("mongoose");
-const { Goal, validate_Goal, Goals } = require("../model/Goal.model");
-const { formatResult } = require("../utils/imports");
-const mongoose = require("mongoose");
+const { Goal, validate_Goal } = require("../models/Goal.model");
+const { formatResult } = require("../utils/import");
 
 /**
  * Get Goal
@@ -10,30 +9,35 @@ const mongoose = require("mongoose");
  */
 exports.getGoal = async(req, res) => {
         try {
-            let { limit, page } = req.query;
+            const result = await Goal.find()
+            return res.send(result)
+        } catch (error) {
+            return res.send(error)
+                // }
+                // try {
+                //     let { limit, page } = req.query;
 
-            if (!page)
-                page = 1
+            //     if (!page)
+            //         page = 1
 
-            if (!limit)
-                limit = 20
+            //     if (!limit)
+            //         limit = 20
 
-            if (page < 1)
-                return res.send(formatResult({ status: 400, message: 'Page query must be greater than 0' }))
+            //     if (page < 1)
+            //         return res.send(formatResult({ status: 400, message: 'Page query must be greater than 0' }))
 
-            if (limit < 1)
-                return res.send(formatResult({ status: 400, message: 'Limit query must be greater than 0' }))
+            //     if (limit < 1)
+            //         return res.send(formatResult({ status: 400, message: 'Limit query must be greater than 0' }))
 
-            const options = {
-                page: page,
-                limit: limit
-            };
+            //     const options = {
+            //         page: page,
+            //         limit: limit
+            //     };
 
-            const message = awaitGoal.paginate({}, options)
-            console.log(message)
-            res.send(formatResult({ data: message }))
-        } catch (e) {
-            return res.send(formatResult({ status: 500, message: e }))
+            //     const message = await Goal.paginate({}, options)
+            //     res.send(formatResult({ data: message }))
+            // } catch (e) {
+            //     return res.send(formatResult({ status: 500, message: e }))
         }
     }
     /**
@@ -43,10 +47,12 @@ exports.getGoal = async(req, res) => {
      */
 exports.createGoal = async(req, res) => {
     try {
+        // userId = req.user.userId;
         const { error } = validate_Goal(req.body)
         if (error)
             return res.send(formatResult({ status: 400, message: error.details[0].message }))
-        const newGoal = newGoal(req.body)
+                // const {} = req.body
+        const newGoal = new Goal(req.body)
         await newGoal.save();
         return res.send(formatResult({ status: 201, message: 'Goal created successfully', data: newGoal }))
     } catch (e) {
@@ -87,7 +93,7 @@ exports.deleteGoal = async(req, res) => {
     try {
         if (!isValidObjectId(req.params.id))
             return res.send(formatResult({ status: 400, message: "Invalid id" }))
-        const GoalID = awaitGoal.findOneAndDelete({
+        const GoalID = await Goal.findOneAndDelete({
             _id: req.params.id
         })
         if (!GoalID)
